@@ -1,0 +1,127 @@
+html {
+  text-align: center;
+}
+
+.mainContainer {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 0px;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+}
+
+.mainText {
+  font-family: "Roboto", sans-serif;
+  font-size: 60px;
+  color: #252525;
+  font-weight: 700;
+  margin: 40px 0px;
+}
+
+form {
+  margin-top: 100px;
+}
+
+.errorMessageContainer {
+  margin-top: 7px;
+  position: absolute;
+  left: 50%;
+}
+.errorMessage {
+  color: #e90000;
+  position: relative;
+  left: -50%;
+}
+
+.secretWord {
+  font-size: 45px;
+  color: #1d1d1d;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.guessesLeft {
+  font-size: 20px;
+  color: #1d1d1d;
+  margin-top: 0px;
+}
+
+.letterButton {
+  font-size: 21px !important;
+  padding: 13px 13px 13px 16px !important;
+  margin: 5px !important;
+  border-radius: 36px !important;
+  box-shadow: none !important;
+}
+
+.letterButtonsContainer {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.arrowIcon {
+  margin-left: 10px;
+}
+
+img {
+  margin: auto 0px;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.winMessage {
+  font-size: 40px;
+  color: #009419;
+  font-weight: 500;
+  margin-top: 60px;
+}
+
+.loseMessage {
+  font-size: 40px;
+  color: #d60000;
+  font-weight: 500;
+  margin-top: 60px;
+}
+
+.retryIcon {
+  margin-right: 10px;
+}
+
+.footer {
+  font-size: 15px;
+  color: #6d6d6d;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media only screen and (min-width: 740px) {
+  .letterButtonsContainer {
+    margin-right: auto;
+    margin-left: auto;
+    width: 740px;
+  }
+
+  .gridContainer {
+    margin-right: auto;
+    margin-left: auto;
+    width: 740px;
+  }
+}
+
+a:-webkit-any-link {
+  color: #6d6d6d;
+}
+
+@media only screen and (max-width: 665px) {
+  .secretWord {
+    font-size: 30px;
+  }
+}
