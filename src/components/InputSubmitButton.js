@@ -6,7 +6,7 @@ import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 const useStyles = makeStyles(() => ({
   rootInput: {
     "& > *": {
-      margin: "50px 0px",
+      margin: "65px 0px",
       padding: "16px 23px 16px 35px",
       borderRadius: "30px",
     },

@@ -89,6 +89,12 @@ img {
   margin-top: 60px;
 }
 
+.correctWordContainer {
+ margin-right: 5%;
+ margin-left: 5%;
+ word-wrap: break-word;
+}
+
 .retryIcon {
   margin-right: 10px;
 }
@@ -100,6 +106,7 @@ img {
   position: absolute;
   bottom: 0;
   width: 100%;
+  word-wrap: break-word;
 }
 
 @media only screen and (min-width: 740px) {

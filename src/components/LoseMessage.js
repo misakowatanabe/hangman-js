@@ -18,7 +18,9 @@ export default function LoseMessage(props) {
   return (
     <div>
       <div className="loseMessage">GAME OVER</div>
-      <p>Correct word is: {props.secretWord}</p>
+      <div className="correctWordContainer">
+        <p>Correct word is: {props.secretWord}</p>
+      </div>
       <div className={classes.root}>
         <Button onClick={props.onClick} type="submit" variant="contained">
           <ReplayIcon className="retryIcon" />
