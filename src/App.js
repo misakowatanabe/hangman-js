@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./style/App.css";
 import WordInput from "./components/WordInput";
+import RandomWordSubmitButton from "./components/RandomWordSubmitButton";
+import OutputGrid from "./components/OutputGrid";
 import WinMessage from "./components/WinMessage";
 import LoseMessage from "./components/LoseMessage";
-import OutputGrid from "./components/OutputGrid";
 import Button from "@material-ui/core/Button";
 import hangman0 from "./img/hangman0.png";
 import hangman1 from "./img/hangman1.png";
@@ -16,7 +17,6 @@ import hangman7 from "./img/hangman7.png";
 import hangman8 from "./img/hangman8.png";
 import hangman9 from "./img/hangman9.png";
 import hangman10 from "./img/hangman10.png";
-import RandomWordSubmitButton from "./components/RandomWordSubmitButton";
 
 function App() {
   const [letters, setLetters] = useState("");
