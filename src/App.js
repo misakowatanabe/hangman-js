@@ -16,6 +16,7 @@ import hangman7 from "./img/hangman7.png";
 import hangman8 from "./img/hangman8.png";
 import hangman9 from "./img/hangman9.png";
 import hangman10 from "./img/hangman10.png";
+import RandomWordSubmitButton from "./components/RandomWordSubmitButton";
 
 function App() {
   const [letters, setLetters] = useState("");
@@ -35,6 +36,12 @@ function App() {
     } else {
       setSecretWord(letters.toUpperCase());
     }
+  };
+
+  var randomWords = require("random-words");
+  const handleSubmitRandomWord = (e) => {
+    e.preventDefault();
+    setSecretWord(randomWords().toUpperCase());
   };
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ".split("");
@@ -116,6 +123,10 @@ function App() {
             handleChange={handleInputChange}
             handleSubmit={handleSubmit}
             errorMessage={errorMessage}
+          />
+          <p className="randomWordGuide">Are you alone now? You can play with random words!</p>
+          <RandomWordSubmitButton
+            handleSubmitRandomWord={handleSubmitRandomWord}
           />
         </div>
       )}
