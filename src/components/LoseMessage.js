@@ -6,7 +6,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 const useStyles = makeStyles(() => ({
   root: {
     "& > *": {
-      margin: "30px 0px 100px 0px",
+      margin: "30px 0px 150px 0px",
       padding: "16px 35px 16px 29px",
       borderRadius: "30px",
     },
