@@ -17,6 +17,7 @@ import hangman7 from "./img/hangman7.png";
 import hangman8 from "./img/hangman8.png";
 import hangman9 from "./img/hangman9.png";
 import hangman10 from "./img/hangman10.png";
+import ResultMessageWithButton from "./components/test";
 
 function App() {
   const [letters, setLetters] = useState("");
@@ -113,6 +114,12 @@ function App() {
     setHangman(hangman0);
   };
 
+  const LoseMessageTest = () => {
+    if (count < 1) {
+      return <LoseMessage onClick={handleRetry} secretWord={secretWord} />;
+    } else return;
+  };
+
   return (
     <div className="mainContainer">
       <div className="mainText">Hangman</div>
@@ -124,7 +131,9 @@ function App() {
             handleSubmit={handleSubmit}
             errorMessage={errorMessage}
           />
-          <p className="randomWordGuide">Are you alone now? You can play with random words!</p>
+          <p className="randomWordGuide">
+            Are you alone now? You can play with random words!
+          </p>
           <RandomWordSubmitButton
             handleSubmitRandomWord={handleSubmitRandomWord}
           />
@@ -139,12 +148,19 @@ function App() {
         </div>
       )}
       <div>
-        {!count < 1 ? null : (
+        {/* {!count < 1 ? null : (
           <LoseMessage onClick={handleRetry} secretWord={secretWord} />
-        )}
+        )} */}
+        {/* {LoseMessageTest()}
         {maskedWord.includes("_") || !secretWord ? null : (
           <WinMessage onClick={handleRetry} />
-        )}
+        )} */}
+        <ResultMessageWithButton
+          count={count}
+          secretWord={secretWord}
+          maskedWord={maskedWord}
+          onClick={handleRetry}
+        />
       </div>
       <footer>
         <p className="footer">
