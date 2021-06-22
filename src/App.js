@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import "./style/App.css";
-import WordInput from "./components/WordInput";
-import RandomWordSubmitButton from "./components/RandomWordSubmitButton";
-import OutputGrid from "./components/OutputGrid";
-import WinMessage from "./components/WinMessage";
-import LoseMessage from "./components/LoseMessage";
-import Button from "@material-ui/core/Button";
+import Intro from "./components/Intro";
+import Game from "./components/Game";
+import Footer from "./components/Footer";
+import Result from "./components/Result";
 import hangman0 from "./img/hangman0.png";
 import hangman1 from "./img/hangman1.png";
 import hangman2 from "./img/hangman2.png";
@@ -17,66 +15,21 @@ import hangman7 from "./img/hangman7.png";
 import hangman8 from "./img/hangman8.png";
 import hangman9 from "./img/hangman9.png";
 import hangman10 from "./img/hangman10.png";
-import ResultMessageWithButton from "./components/test";
 
 function App() {
   const [letters, setLetters] = useState("");
-  const handleInputChange = (e) => {
-    e.preventDefault();
-    setLetters(e.target.value);
-  };
-
   const [errorMessage, setErrorMessage] = useState("");
   const [secretWord, setSecretWord] = useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (letters === "") {
-      setErrorMessage("Please type in a word to start the game");
-    } else if (letters.match(/[^A-Za-zÅÄÖåäö]/)) {
-      setErrorMessage("Please type in a word using only A-Ö");
-    } else {
-      setSecretWord(letters.toUpperCase());
-    }
-  };
-
-  var randomWords = require("random-words");
-  const handleSubmitRandomWord = (e) => {
-    e.preventDefault();
-    setSecretWord(randomWords().toUpperCase());
-  };
-
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ".split("");
-
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
+  const [count, setCount] = useState(10);
+  const [hangman, setHangman] = useState(hangman0);
+
   const maskedWord = secretWord
     .split("")
     .map((letter) => (correctGuesses.includes(letter) ? letter : "_"))
     .join(" ");
-  const letterButtons = alphabet.map((letter, index) => (
-    <Button
-      key={index}
-      disabled={
-        wrongGuesses.includes(letter) || correctGuesses.includes(letter)
-      }
-      onClick={() => {
-        if (secretWord.includes(letter)) {
-          setCorrectGuesses([...correctGuesses, letter]);
-        } else {
-          setCount(count - 1);
-          setWrongGuesses([...wrongGuesses, letter]);
-        }
-      }}
-      variant="contained"
-      color="primary"
-      className="letterButton"
-    >
-      <div>{letter}</div>
-    </Button>
-  ));
 
-  const [count, setCount] = useState(10);
-  const [hangman, setHangman] = useState(hangman0);
   useEffect(() => {
     if (count === 10) {
       setHangman(hangman0);
@@ -114,62 +67,35 @@ function App() {
     setHangman(hangman0);
   };
 
-  const LoseMessageTest = () => {
-    if (count < 1) {
-      return <LoseMessage onClick={handleRetry} secretWord={secretWord} />;
-    } else return;
-  };
-
   return (
     <div className="mainContainer">
       <div className="mainText">Hangman</div>
-      {secretWord === "" && (
-        <div>
-          <WordInput
-            newWord={letters}
-            handleChange={handleInputChange}
-            handleSubmit={handleSubmit}
-            errorMessage={errorMessage}
-          />
-          <p className="randomWordGuide">
-            Are you alone now? You can play with random words!
-          </p>
-          <RandomWordSubmitButton
-            handleSubmitRandomWord={handleSubmitRandomWord}
-          />
-        </div>
-      )}
-      {count >= 0 && secretWord && (
-        <div>
-          <OutputGrid maskedWord={maskedWord} count={count} hangman={hangman} />
-          {!maskedWord.includes("_") || !count > 0 ? null : (
-            <div className="letterButtonsContainer">{letterButtons}</div>
-          )}
-        </div>
-      )}
-      <div>
-        {/* {!count < 1 ? null : (
-          <LoseMessage onClick={handleRetry} secretWord={secretWord} />
-        )} */}
-        {/* {LoseMessageTest()}
-        {maskedWord.includes("_") || !secretWord ? null : (
-          <WinMessage onClick={handleRetry} />
-        )} */}
-        <ResultMessageWithButton
-          count={count}
-          secretWord={secretWord}
-          maskedWord={maskedWord}
-          onClick={handleRetry}
-        />
-      </div>
-      <footer>
-        <p className="footer">
-          Built by Misako{" "}
-          <a href="https://github.com/misakowatanabe/hangman-js">
-            https://github.com/misakowatanabe/hangman-js
-          </a>
-        </p>
-      </footer>
+      <Intro
+        letters={letters}
+        setLetters={setLetters}
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+        secretWord={secretWord}
+        setSecretWord={setSecretWord}
+      />
+      <Game
+        count={count}
+        setCount={setCount}
+        correctGuesses={correctGuesses}
+        setCorrectGuesses={setCorrectGuesses}
+        wrongGuesses={wrongGuesses}
+        setWrongGuesses={setWrongGuesses}
+        secretWord={secretWord}
+        maskedWord={maskedWord}
+        hangman={hangman}
+      />
+      <Result
+        count={count}
+        secretWord={secretWord}
+        maskedWord={maskedWord}
+        handleRetry={handleRetry}
+      />
+      <Footer />
     </div>
   );
 }

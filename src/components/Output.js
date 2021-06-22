@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function GridForOutput(props) {
+export default function Output(props) {
   const classes = useStyles();
 
   return (
@@ -23,7 +23,7 @@ export default function GridForOutput(props) {
               <div className="guessesLeft">Guesses Left: {props.count}</div>
           </Grid>
           <Grid item xs={6}>
-              <img src={props.hangman} alt="Logo" />
+              <img src={props.hangman} alt="hangman" />
           </Grid>
         </Grid>
       </div>

@@ -15,10 +15,16 @@ const useStyles = makeStyles(() => ({
 
 export default function RandomWordSubmitButton(props) {
   const classes = useStyles();
+  var randomWords = require("random-words");
+  const handleSubmitRandomWord = (e) => {
+    e.preventDefault();
+    props.setSecretWord(randomWords().toUpperCase());
+  };
+
   return (
     <div className={classes.rootInput}>
       <Button
-        onClick={props.handleSubmitRandomWord}
+        onClick={handleSubmitRandomWord}
         type="submit"
         variant="contained"
         color="primary"
